@@ -102,11 +102,11 @@ EditStyle.changeOverallColor = function (color) {
 // init value
 EditStyle._curTextColor = [0.73, 0.73, 0.73, 1.0];
 EditStyle._curWidgetColor = [0.17, 0.01, 0.34, 1.0];
-EditStyle._curBackgroundColor = [0.17, 0.01, 0.34];
+EditStyle._curBackgroundColor = [0.17, 0.01, 0.34, 1.0];
 EditStyle._curShowBorder = false;
 
 EditStyle.changeOverallColor([0.34, 0.34, 0.34]);
-EditStyle.changeWidgetsColor([0.34, 0.34, 0.34]);
+EditStyle.changeWidgetsColor([0.1058, 0.125, 0.3607]);
 EditStyle.changeBackgroundColor([0.34, 0.34, 0.34]);
 EditStyle.changeTextColor([0.8, 0.8, 0.8]);
 
