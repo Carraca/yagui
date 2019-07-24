@@ -24,8 +24,8 @@ class Sidebar {
   }
 
   _onTheRight() {
-    this.isOnTheRight = true;
-    this.domSidebar.style.right = 0;
+    this.isOnTheRight = false;
+    this.domSidebar.style.left = 0;
     this.domSidebar.style.borderRight = 0;
     this.domSidebar.style.borderLeft = 'double';
     this.domSidebar.style.borderColor = 'rgba(255,255,255,0.3)';
