@@ -433,6 +433,7 @@ img.logo {
   padding: 0 10px;
   z-index: 1;
   float: left;
+  padding-left: 310px;
 }
 
 .gui-topbar ul {
@@ -442,10 +443,10 @@ img.logo {
 }
 
 .gui-topbar ul > li {
-  float: right;
+  float: left;
   height: 40px;
   line-height: 40px;
-  padding-right: 80px;
+  padding-left: 20px;
   position: relative;
   cursor: pointer;
 }
