@@ -1,37 +1,36 @@
-import Folder from 'containers/Folder';
+import Folder from "containers/Folder";
 
 class Sidebar {
-
   constructor(callbackResize) {
-    this.domSidebar = document.createElement('div');
-    this.domSidebar.className = 'gui-sidebar';
+    this.domSidebar = document.createElement("div");
+    this.domSidebar.className = "gui-sidebar";
 
-    this.domResize = document.createElement('div');
-    this.domResize.className = 'gui-resize';
+    this.domResize = document.createElement("div");
+    this.domResize.className = "gui-resize";
 
     this.isDragging = false;
     this.mouseX = 0;
-    this.domResize.addEventListener('mousedown', this._onMouseDown.bind(this));
-    window.addEventListener('mousemove', this._onMouseMove.bind(this));
-    window.addEventListener('mouseup', this._onMouseUp.bind(this));
+    this.domResize.addEventListener("mousedown", this._onMouseDown.bind(this));
+    window.addEventListener("mousemove", this._onMouseMove.bind(this));
+    window.addEventListener("mouseup", this._onMouseUp.bind(this));
 
     this.callbackResize = callbackResize;
     this.isOnTheRight = false;
   }
 
   _setTop(nb) {
-    this.domSidebar.style.top = this.domResize.style.top = nb + 'px';
+    this.domSidebar.style.top = this.domResize.style.top = nb + "px";
   }
 
   _onTheRight() {
     this.isOnTheRight = false;
-    this.domSidebar.style.left = 0;
-    this.domSidebar.style.borderRight = 0;
-    this.domSidebar.style.borderLeft = 'double';
-    this.domSidebar.style.borderColor = 'rgba(255,255,255,0.3)';
-    this.domResize.style.left = 'auto';
-    this.domResize.style.right = this.domSidebar.offsetWidth + 'px';
-    this.domResize.style.marginRight = '-3px';
+    this.domSidebar.style.left = 1;
+    this.domSidebar.style.borderRight = 1;
+    this.domSidebar.style.borderLeft = 1;
+    this.domSidebar.style.borderColor = "rgba(255,255,255,0.3)";
+    this.domResize.style.left = 0;
+    this.domResize.style.right = this.domSidebar.offsetWidth + "px";
+    this.domResize.style.marginRight = "-3px";
   }
 
   _onMouseDown(ev) {
@@ -42,10 +41,10 @@ class Sidebar {
   _updateViewportPosition(viewport) {
     var w = this.domSidebar.hidden ? 0 : this.domSidebar.offsetWidth;
     if (this.isOnTheRight) {
-      viewport.style.width = (viewport.clientWidth - w) + 'px';
+      viewport.style.width = viewport.clientWidth - w + "px";
     } else {
-      viewport.style.left = (this.domSidebar.offsetLeft + w) + 'px';
-      viewport.style.width = (viewport.clientWidth - w) + 'px';
+      viewport.style.left = this.domSidebar.offsetLeft + w + "px";
+      viewport.style.width = viewport.clientWidth - w + "px";
     }
   }
 
@@ -56,9 +55,10 @@ class Sidebar {
     if (this.isOnTheRight) delta = -delta;
     var widthBar = Math.max(50, this.domSidebar.offsetWidth + delta);
 
-    var val = widthBar + 'px';
+    var val = widthBar + "px";
     this.domSidebar.style.width = val;
-    if (this.isOnTheRight) this.domResize.style.right = this.domSidebar.offsetWidth + 'px';
+    if (this.isOnTheRight)
+      this.domResize.style.right = this.domSidebar.offsetWidth + "px";
     else this.domResize.style.left = val;
 
     this.mouseX = mouseX;
