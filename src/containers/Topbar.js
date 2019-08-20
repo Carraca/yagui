@@ -1,23 +1,31 @@
-import Menu from 'containers/Menu';
-import EditStyle from 'utils/EditStyle';
+import Menu from "containers/Menu";
+import EditStyle from "utils/EditStyle";
+import undoButton from "../widgets/undoButton";
+import redoButton from "../widgets/redoButton";
 
 class Topbar {
-
   constructor(callbackResize) {
-    this.domTopbar = document.createElement('div');
-    this.domTopbar.className = 'gui-topbar';
+    this.domTopbar = document.createElement("div");
+    this.domTopbar.className = "gui-topbar";
 
-    this.domUl = document.createElement('ul');
+    this.domUl = document.createElement("ul");
     this.domTopbar.appendChild(this.domUl);
 
     this.callbackResize = callbackResize;
     this.uiExtra = {};
   }
 
+  _addLine(name) {
+    var domLine = document.createElement("li");
+    domLine.innerHTML = name || "";
+    this.domUl.appendChild(domLine);
+    return domLine;
+  }
+
   _updateViewportPosition(viewport) {
     var h = this.domTopbar.hidden ? 0 : this.domTopbar.offsetHeight;
-    viewport.style.top = h + 'px';
-    viewport.style.height = (viewport.clientHeight - h) + 'px';
+    viewport.style.top = h + "px";
+    viewport.style.height = viewport.clientHeight - h + "px";
   }
 
   _onChangeColor(callback, color) {
@@ -30,27 +38,63 @@ class Topbar {
 
   addMenu(name) {
     var menu = new Menu();
-    var li = document.createElement('li');
-    li.setAttribute('onclick', 'void(0)'); // iOS trick to trigger click on hover
-    li.innerHTML = name || '';
+    var li = document.createElement("li");
+    li.setAttribute("onclick", "void(0)"); // iOS trick to trigger click on hover
+    li.innerHTML = name || "";
     this.domUl.appendChild(li);
     li.appendChild(menu.domUl);
     menu._setDomContainer(li);
     return menu;
   }
 
+  addUndoButton(name, callbackOrObject, key) {
+    var widget = new undoButton(name, callbackOrObject, key);
+    var domLine = this._addLine();
+    domLine.appendChild(widget.domButton);
+    widget._setDomContainer(domLine);
+    return widget;
+  }
+
+  addRedoButton(name, callbackOrObject, key) {
+    var widget = new redoButton(name, callbackOrObject, key);
+    var domLine = this._addLine();
+    domLine.appendChild(widget.domButton);
+    widget._setDomContainer(domLine);
+    return widget;
+  }
+
   addExtra() {
     var cb = this._onChangeColor;
-    var menu = this.addMenu('Extra UI');
+    var menu = this.addMenu("Extra UI");
     var ext = this.uiExtra;
-    menu.addTitle('Overall');
-    ext.overallColor = menu.addColor('', EditStyle._curWidgetColor, cb.bind(this, EditStyle.changeOverallColor));
+    menu.addTitle("Overall");
+    ext.overallColor = menu.addColor(
+      "",
+      EditStyle._curWidgetColor,
+      cb.bind(this, EditStyle.changeOverallColor)
+    );
 
-    menu.addTitle('Advanced');
-    ext.widgetColor = menu.addColor('Widget', EditStyle._curWidgetColor, cb.bind(this, EditStyle.changeWidgetsColor));
-    ext.backColor = menu.addColor('Back', EditStyle._curBackgroundColor, cb.bind(this, EditStyle.changeBackgroundColor));
-    ext.textColor = menu.addColor('Text', EditStyle._curTextColor, cb.bind(this, EditStyle.changeTextColor));
-    ext.showBorder = menu.addCheckbox('Border', EditStyle._curShowBorder, EditStyle.changeDisplayBoorder);
+    menu.addTitle("Advanced");
+    ext.widgetColor = menu.addColor(
+      "Widget",
+      EditStyle._curWidgetColor,
+      cb.bind(this, EditStyle.changeWidgetsColor)
+    );
+    ext.backColor = menu.addColor(
+      "Back",
+      EditStyle._curBackgroundColor,
+      cb.bind(this, EditStyle.changeBackgroundColor)
+    );
+    ext.textColor = menu.addColor(
+      "Text",
+      EditStyle._curTextColor,
+      cb.bind(this, EditStyle.changeTextColor)
+    );
+    ext.showBorder = menu.addCheckbox(
+      "Border",
+      EditStyle._curShowBorder,
+      EditStyle.changeDisplayBoorder
+    );
     return menu;
   }
 

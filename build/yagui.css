@@ -292,6 +292,51 @@ img.logo {
   color: #555;
 }
 
+/****** undobutton ********/
+
+.gui-undobutton {
+  -webkit-appearance: none;
+  background: url("/src/svg/undo-arrow.svg");
+  padding-left: 20px;
+  background-size: contain;
+  margin: 50%;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  /* display: inline-block; */
+  width: 20px;
+  height: 20px;
+
+}
+
+.gui-undobutton:enabled:hover {
+  color: #fff;
+  fill: #ff0000;
+}
+
+/****** redobutton ********/
+
+.gui-redobutton {
+  -webkit-appearance: none;
+  background: url("/src/svg/redo-arrow.svg");
+  padding-left: 20px;
+  background-size: contain;
+  /* margin: 50%; */
+  margin: 50%;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  /* display: inline-block; */
+  width: 20px;
+  height: 20px;
+
+}
+
+.gui-redobutton:enabled:hover {
+  color: #fff;
+  fill: #ff0000;
+}
+
 
 /****** widget color ******/
 
