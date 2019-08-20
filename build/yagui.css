@@ -296,7 +296,7 @@ img.logo {
 
 .gui-undobutton {
   -webkit-appearance: none;
-  background: url("/src/svg/undo-arrow.svg");
+  background: url("../src/svg/undo-arrow.svg");
   padding-left: 20px;
   background-size: contain;
   margin: 50%;
@@ -318,7 +318,7 @@ img.logo {
 
 .gui-redobutton {
   -webkit-appearance: none;
-  background: url("/src/svg/redo-arrow.svg");
+  background: url("../src/svg/redo-arrow.svg");
   padding-left: 20px;
   background-size: contain;
   /* margin: 50%; */
