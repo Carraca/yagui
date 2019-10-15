@@ -7,7 +7,8 @@ module.exports = function(env) {
     output: {
       library: "yagui",
       libraryTarget: "umd",
-      filename: "./build/yagui.js"
+      filename: "yagui.js",
+      path: path.resolve(__dirname, "build")
     },
     resolve: {
       modules: [
