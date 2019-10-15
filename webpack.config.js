@@ -1,18 +1,18 @@
-var path = require('path');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var path = require("path");
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-module.exports = function (env) {
+module.exports = function(env) {
   var config = {
-    entry: './src/yagui.js',
+    entry: "./src/yagui.js",
     output: {
-      library: 'yagui',
-      libraryTarget: 'umd',
-      filename: './build/yagui.js'
+      library: "yagui",
+      libraryTarget: "umd",
+      filename: "./build/yagui.js"
     },
     resolve: {
       modules: [
-        path.join(__dirname, 'src'),
-        path.join(__dirname, 'node_modules')
+        path.join(__dirname, "src"),
+        path.join(__dirname, "node_modules")
       ]
     },
     module: {
@@ -22,9 +22,7 @@ module.exports = function (env) {
 
   var isRelease = env && env.release;
 
-  if (!isRelease) {
-    config.devtool = 'inline-cheap-source-map';
-  }
+  config.mode = isRelease ? "production" : "development";
 
   if (isRelease) {
     config.plugins = [new UglifyJsPlugin()];
@@ -32,12 +30,14 @@ module.exports = function (env) {
     config.module.rules.push({
       test: /\.js$/,
       exclude: [/node_modules/],
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env']
+      use: [
+        {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
         }
-      }],
+      ]
     });
   }
 
