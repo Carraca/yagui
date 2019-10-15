@@ -6,9 +6,12 @@ class GuiMain {
     /**
      * @Param HTML_DOM parentElm: parent dom element that host the GUI
      */
+    console.log("YAGUI_POTATO", parentElm);
     if (!parentElm) {
+      console.log("YAGUI_POTATO_1");
       this.domMain = document.createElement("div");
     } else {
+      console.log("YAGUI_POTATO_2");
       this.domMain = parentElm.createElement("div");
     }
     this.viewport = viewport;
