@@ -6,7 +6,6 @@ class GuiMain {
     /**
      * @Param HTML_DOM parentElm: parent dom element that host the GUI
      */
-    console.log("YAGUI_POTATO", parentElm);
     this.domMain = document.createElement("div");
     this.viewport = viewport;
 
@@ -52,7 +51,6 @@ class GuiMain {
   }
 
   addLeftSidebar() {
-    console.log("YAGUI_POTATO_MAIN_DOM_LEFT", this.domMain);
     this.leftSidebar = new Sidebar(this.cbResize_);
     var domSide = this.leftSidebar.domSidebar;
     this.domMain.appendChild(domSide);
@@ -76,7 +74,6 @@ class GuiMain {
   }
 
   addTopbar() {
-    console.log("YAGUI_POTATO_MAIN_DOM_TOP", this.domMain);
     this.topbar = new Topbar(this.cbResize_);
     this.domMain.appendChild(this.topbar.domTopbar);
 
