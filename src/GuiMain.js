@@ -1,52 +1,53 @@
-import Sidebar from 'containers/Sidebar';
-import Topbar from 'containers/Topbar';
+import Sidebar from "containers/Sidebar";
+import Topbar from "containers/Topbar";
 
 class GuiMain {
-
-  constructor(viewport, callbackResize) {
-    this.domMain = document.createElement('div');
+  constructor(viewport, callbackResize, parentElm) {
+    /**
+     * @Param HTML_DOM parentElm: parent dom element that host the GUI
+     */
+    this.domMain = document.createElement("div");
     this.viewport = viewport;
 
     this.callbackResize = callbackResize;
     if (this.viewport) {
-      this.viewport.style.width = document.documentElement.clientWidth + 'px';
-      this.viewport.style.height = document.documentElement.clientHeight + 'px';
+      this.viewport.style.width = document.documentElement.clientWidth + "px";
+      this.viewport.style.height = document.documentElement.clientHeight + "px";
     }
     this.cbResize_ = this._onWindowResize.bind(this);
-
-    document.body.appendChild(this.domMain);
+    if (!parentElm) {
+      document.body.appendChild(this.domMain);
+    } else {
+      parentElm.appendChild(this.domMain);
+    }
     this.leftSidebar = undefined;
     this.rightSidebar = undefined;
     this.topbar = undefined;
 
-    window.addEventListener('resize', this._onWindowResize.bind(this), false);
+    window.addEventListener("resize", this._onWindowResize.bind(this), false);
   }
 
   _onWindowResize() {
     if (this.viewport) {
-      this.viewport.style.width = document.documentElement.clientWidth + 'px';
-      this.viewport.style.height = document.documentElement.clientHeight + 'px';
-      this.viewport.style.left = '0px';
-      this.viewport.style.top = '0px';
+      this.viewport.style.width = document.documentElement.clientWidth + "px";
+      this.viewport.style.height = document.documentElement.clientHeight + "px";
+      this.viewport.style.left = "0px";
+      this.viewport.style.top = "0px";
       if (this.leftSidebar)
         this.leftSidebar._updateViewportPosition(this.viewport);
       if (this.rightSidebar)
         this.rightSidebar._updateViewportPosition(this.viewport);
-      if (this.topbar)
-        this.topbar._updateViewportPosition(this.viewport);
+      if (this.topbar) this.topbar._updateViewportPosition(this.viewport);
     }
     this._updateSidebarsPosition();
-    if (this.callbackResize)
-      this.callbackResize();
+    if (this.callbackResize) this.callbackResize();
   }
 
   _updateSidebarsPosition() {
     if (!this.topbar) return;
     var off = this.topbar.domTopbar.offsetHeight;
-    if (this.leftSidebar)
-      this.leftSidebar._setTop(off);
-    if (this.rightSidebar)
-      this.rightSidebar._setTop(off);
+    if (this.leftSidebar) this.leftSidebar._setTop(off);
+    if (this.rightSidebar) this.rightSidebar._setTop(off);
   }
 
   addLeftSidebar() {

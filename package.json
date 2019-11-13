@@ -4,11 +4,11 @@
   "version": "2.0.0",
   "description": "Yet another javascript gui (for canvas centered WebGL app)",
   "dependencies": {
-    "@babel/core": "^7.0.0-beta.34",
-    "@babel/preset-env": "^7.0.0-beta.34",
-    "babel-loader": "8.0.0-beta.0",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-loader": "^8.0.6",
     "uglifyjs-webpack-plugin": "^1.1.2",
-    "webpack": "^3.9.1"
+    "webpack": "^4.41.0"
   },
   "scripts": {
     "dev": "webpack -w",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/stephomi/yagui/issues"
   },
-  "homepage": "https://github.com/stephomi/yagui"
+  "homepage": "https://github.com/stephomi/yagui",
+  "devDependencies": {
+    "webpack-cli": "^3.3.9"
+  }
 }
